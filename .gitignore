@@ -133,3 +133,6 @@ dmypy.json
 
 # Node Modules
 /react/blogapi/node_modules/
+
+# Media files
+/drf/media

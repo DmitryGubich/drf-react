@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
 import axiosInstance from '../../axios';
-
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -57,7 +55,6 @@ const Search = () => {
     return (
         <React.Fragment>
             <Container maxWidth="md" component="main">
-                <h1 align="center">Search results:</h1>
                 <Grid container spacing={5} alignItems="flex-end">
                     {appState.posts.map((post) => {
                         return (
@@ -71,7 +68,7 @@ const Search = () => {
                                     >
                                         <CardMedia
                                             className={classes.cardMedia}
-                                            image="https://source.unsplash.com/random"
+                                            image={post.image}
                                             title="Image title"
                                         />
                                     </Link>

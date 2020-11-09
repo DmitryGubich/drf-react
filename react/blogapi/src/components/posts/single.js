@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axiosInstance from '../../axios';
 import {useParams} from 'react-router-dom';
 //MaterialUI
@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import Image from 'material-ui-image'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -20,7 +21,9 @@ export default function Post() {
     const {slug} = useParams();
     const classes = useStyles();
 
-    const [data, setData] = useState({posts: []});
+    const [data, setData] = useState({
+        posts: [],
+    });
 
     useEffect(() => {
         axiosInstance.get(slug).then((res) => {
@@ -33,6 +36,7 @@ export default function Post() {
         <Container component="main" maxWidth="md">
             <CssBaseline/>
             <div className={classes.paper}></div>
+            {' '}
             <div className={classes.heroContent}>
                 <Container maxWidth="sm">
                     <Typography
@@ -40,27 +44,29 @@ export default function Post() {
                         variant="h2"
                         align="center"
                         color="textPrimary"
-                        gutterBottom
-                    >
-                        {data.posts.title}
-                    </Typography>
+                        gutterBottom>
+                        {data.posts.title}{' '}
+                    </Typography>{' '}
+                    <Image
+                        src={data.posts.image}
+                        aspectRatio={(16/9)}
+                    />
                     <Typography
                         variant="h5"
                         align="center"
                         color="textSecondary"
-                        paragraph
-                    >
-                        {data.posts.excerpt}
-                    </Typography>
+                        paragraph>
+                        {data.posts.excerpt}{' '}
+                    </Typography>{' '}
                     <Typography
                         variant="body1"
                         color="textSecondary"
-                        gutterBottom
-                    >
+                        gutterBottom>
                         {data.posts.content}
                     </Typography>
-                </Container>
+                </Container>{' '}
             </div>
+            {' '}
         </Container>
     );
 }
